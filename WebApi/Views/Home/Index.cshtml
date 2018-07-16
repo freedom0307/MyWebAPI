@@ -22,3 +22,74 @@
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
     </div>
 </div>
+<form method="post" action="api/users/register?id=1">
+    <div class="row">
+        <div class="col-md-5">
+            <h2>Test </h2>
+            <p>
+                <input type="text" id="txtAccount" name="账号" />
+                <input type="text" id="txtPassWord" name="密码" />
+                <input type="button" id="txtLogin" value="登录" />
+            </p>
+            <p> <input type="text" id="txtid" name="ID" /></p>
+            <p>
+                <input type="button" id="btnGet1" value="Get1" />
+                <input type="button" id="btnGet2" value="Get2" />
+                <input type="button" id="btnGet3" value="Get3" />
+                <input type="button" id="btnGet4" value="Get4" />
+            </p>
+
+            <p>
+                <input type="button" id="btnGet5" value="Get5" />
+                <input type="button" id="btnGet6" value="Get6" />
+                <input type="button" id="btnGet7" value="Get7" />
+                <input type="button" id="btnGet8" value="Get8" />
+                <input type="button" id="btnGet9" value="Get9" />
+            </p>
+
+            <p>
+                <input type="button" id="btnPost1" value="Post1" />
+                <input type="button" id="btnPost2" value="Post2" />
+                <input type="button" id="btnPost3" value="Post3" />
+                <input type="button" id="btnPost4" value="Post4" />
+            </p>
+            <p>
+                <input type="button" id="btnPost5" value="Post5" />
+                <input type="button" id="btnPost6" value="Post6" />
+            </p>
+            @*<p><input type="submit" id="btnPost" /> </p>*@
+            <p>
+                <input type="button" id="btnPut1" value="Put1" />
+                <input type="button" id="btnPut2" value="Put2" />
+                <input type="button" id="btnPut3" value="Put3" />
+                <input type="button" id="btnPut4" value="Put4" />
+                <input type="button" id="btnPut5" value="Put5" />
+                <input type="button" id="btnPut6" value="Put6" />
+            </p>
+            <p>
+                <input type="button" id="btnGetCors1" value="跨域Get1" />
+            </p>
+        </div>
+    </div>
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+    <script>
+        $(function () {
+            var user = { UserID: "11", UserName: "Eleven", UserEmail: "57265177@qq.com" };
+            var info = "this is muti model";
+
+            $("#btnGet1").on("click", function () {
+                //$.ajax({ url: "/api/users", type: "get", data: { "userName": "Superman" }, success: function (data) { alert(data); }, datatype: "json" });//指向接口，参数匹配的，大小写不区分
+                $.ajax({
+                    url: "/api/user/GetUserByName", type: "get", data: { "username": "Superman" },
+                    //beforeSend: function (XHR) {
+                    //    //发送ajax请求之前向http的head里面加入验证信息
+                    //    XHR.setRequestHeader('Authorization', 'BasicAuth ' + ticket);
+                    //},
+                    success: function (data) {
+                        alert(data);
+                    }, datatype: "json"
+                });
+            });
+        });
+    </script>
+</form>
