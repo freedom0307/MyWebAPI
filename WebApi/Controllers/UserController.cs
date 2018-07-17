@@ -16,13 +16,44 @@ namespace WebApi.Controllers
             new Users {UserID = 2, UserName = "Spiderman", UserEmail = "Spiderman@cnblogs.com"},
             new Users {UserID = 3, UserName = "Batman", UserEmail = "Batman@cnblogs.com"}
         };
+
         [HttpGet]
-        public IEnumerable<Users>GetUserByName(string name)
+        public IEnumerable<Users>GetUserByName(string username)
         {
-            var param = HttpContext.Current.Request.QueryString["name"];
-            return _userList.Where(p => string.Equals(p.UserName, name, StringComparison.OrdinalIgnoreCase));
+            var param = HttpContext.Current.Request.QueryString["username"];
+            return _userList.Where(p => string.Equals(p.UserName, username, StringComparison.OrdinalIgnoreCase));
         }
-       
+        [HttpGet]
+        public IEnumerable<Users> GetUserById(int id)
+        {
+            var param = HttpContext.Current.Request.QueryString["id"];
+            return _userList.Where(p => p.UserID==id);
+        }
+        public IEnumerable<Users> GetUserByNameId(string username,int id)
+        {
+            var idparam = HttpContext.Current.Request.QueryString["id"];
+            var nameparam = HttpContext.Current.Request.QueryString["username"];
+            return _userList.Where(p => string.Equals(p.UserName, username, StringComparison.OrdinalIgnoreCase));
+        }
+        public IEnumerable<Users>Get()
+        {
+            return _userList;
+        }
+        public IEnumerable<Users> GetUserByModel(Users user)
+        {
+            var idparam = HttpContext.Current.Request.QueryString["id"];
+            var nameparam = HttpContext.Current.Request.QueryString["username"];
+            var email= HttpContext.Current.Request.QueryString["email"];
+            return _userList;
+        }
+        public IEnumerable<Users> GetUserByModelFromUri([FromUri]Users user)
+        {
+            var idparam = HttpContext.Current.Request.QueryString["id"];
+            var nameparam = HttpContext.Current.Request.QueryString["username"];
+            var email = HttpContext.Current.Request.QueryString["email"];
+            return _userList;
+        }
+
     }
     public class Users
     {

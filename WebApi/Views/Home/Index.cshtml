@@ -22,7 +22,7 @@
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
     </div>
 </div>
-<form method="post" action="api/users/register?id=1">
+<form method="post" action="api/user/register?id=1">
     <div class="row">
         <div class="col-md-5">
             <h2>Test </h2>
@@ -80,7 +80,7 @@
             $("#btnGet1").on("click", function () {
                 //$.ajax({ url: "/api/users", type: "get", data: { "userName": "Superman" }, success: function (data) { alert(data); }, datatype: "json" });//指向接口，参数匹配的，大小写不区分
                 $.ajax({
-                    url: "/api/user/GetUserByName", type: "get", data: { "username": "Superman" },
+                    url: "/api/User/GetUserByName", type: "get", data: { "username": "Superman" },
                     //beforeSend: function (XHR) {
                     //    //发送ajax请求之前向http的head里面加入验证信息
                     //    XHR.setRequestHeader('Authorization', 'BasicAuth ' + ticket);
@@ -88,6 +88,59 @@
                     success: function (data) {
                         alert(data);
                     }, datatype: "json"
+                });
+            });
+            $("#btnGet2").on("click", function () {
+                $.ajax({
+                    url: "/api/user/GetUserById", type: "get", data: { "id": $("#txtid").val() },
+                    success: function (data) {
+                        alert(data);
+                    },
+                    datatype:"json"
+                });
+            });
+            $("#btnGet3").on("click", function () {
+                $.ajax({
+                    url: "api/user/GetUserByNameId",
+                    type: "get",
+                    data: { "username": "Superman", "id": $("#txtid").val() },
+                    success: function (data) {
+                        alert(data);
+                    },
+                    datatype:"json"
+                });
+            });
+            $("#btnGet4").on("click", function () {//无参数
+                $.ajax({
+                    url: "api/user/Get",
+                    type: "get",
+                    data: "",
+                    success: function (data) {
+                        alert(data);
+                    },
+                    datatype:"json"
+                });
+            });
+            $("#btnGet5").on("click", function () {//传递实体，但是接受不到
+                $.ajax({
+                    url: "api/user/GetUserByModel",
+                    type: "get",
+                    data: user,
+                    success: function (data) {
+                        alert(data);
+                    },
+                    datatype: "json"
+                });
+            });
+            $("#btnGet6").on("click", function () {
+                $.ajax({
+                    url: "api/user/GetUserByModelFromUri",
+                    type: "get",
+                    data: user,
+                    success: function (data) {
+                        alert(data);
+                    },
+                    datatype: "json"
                 });
             });
         });
