@@ -70,7 +70,45 @@ namespace WebApi.Controllers
             Users users = JsonConvert.DeserializeObject<Users>(userString);
             return _userList;
         }
+        #region HttpPost
+        /// <summary>
+        /// 不加[FromBody]，请求到不了服务控制器
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public Users RegisterNoKey([FromBody]int id)
+        {
+            string idParam = HttpContext.Current.Request.Form["id"];
 
+            var user = _userList.FirstOrDefault(users => users.UserID == id);
+            if (user == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return user;
+        }
+        public Users Register ([FromBody]int id)
+        {
+            string idParam = HttpContext.Current.Request.Form["id"];
+
+            var user = _userList.FirstOrDefault(users => users.UserID == id);
+            if (user == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return user;
+        }
+        [HttpPost]
+        public Users RegisterUser(Users user)
+        {
+            string idParam = HttpContext.Current.Request.Form["UserID"];
+            string nameParam = HttpContext.Current.Request.Form["UserName"];
+            string emailParam = HttpContext.Current.Request.Form["UserEmail"];
+            var stringContent = base.ControllerContext.Request.Content.ReadAsStringAsync().Result;
+            return user;
+        }
+        #endregion
     }
     public class Users
     {

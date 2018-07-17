@@ -187,6 +187,53 @@
                     datatype: "json"
                 });
             });
+
+
+            $("#btnPost1").on("click", function () {//post请求要加frombody
+                $.ajax({
+                    url: "api/user/RegisterNoKey",
+                    type: "post",
+                    data: { "id": $("#txtid").val() },
+                    success: function (data) {
+                        alert(data);
+                    },
+                    datatype: "json"
+                });
+            });
+            $("#btnPost2").on("click", function () {//这种方法可以成功传值，上面哪种方法不行
+                $.ajax({
+                    url: "api/user/Register",
+                    type: "post",
+                    data: { "": $("#txtid").val() },
+                    success: function (data) {
+                        alert(data);
+                    },
+                    datatype: "json"
+                });
+            });
+            $("#btnPost3").on("click", function () {//这种方法可以成功传值，上面哪种方法不行
+                $.ajax({
+                    url: "api/user/RegisterUser",
+                    type: "post",
+                    data: user,
+                    success: function (data) {
+                        alert(data);
+                    },
+                    datatype: "json"
+                });
+            });
+            $("#btnPost4").on("click", function () {//这种方法可以成功传值，上面哪种方法不行
+                $.ajax({
+                    url: "api/user/RegisterUser",
+                    type: "post",
+                    data: JSON.stringify(user) ,
+                    success: function (data) {
+                        alert(data);
+                    },
+                    datatype: "json",
+                    contentType:'application/json'
+                });
+            });
         });
     </script>
 </form>
