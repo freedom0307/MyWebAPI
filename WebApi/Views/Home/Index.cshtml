@@ -222,6 +222,7 @@
                     datatype: "json"
                 });
             });
+            ////传递json序列化后的格式，后台可以用实体接收,需要指定contentType
             $("#btnPost4").on("click", function () {//这种方法可以成功传值，上面哪种方法不行
                 $.ajax({
                     url: "api/user/RegisterUser",
@@ -231,7 +232,19 @@
                         alert(data);
                     },
                     datatype: "json",
-                    contentType:'application/json'
+                    contentType:'application/json'//对post传实体的时候，要序列化
+                });
+            });
+            $("#btnPost5").on("click", function () {//这种方法可以成功传值，上面哪种方法不行
+                $.ajax({
+                    url: "api/user/RegisterObject",
+                    type: "post",
+                    data: {"user":user,"Info":info},
+                    success: function (data) {
+                        alert(data);
+                    },
+                    datatype: "json"
+                   
                 });
             });
         });

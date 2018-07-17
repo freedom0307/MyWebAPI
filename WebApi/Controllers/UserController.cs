@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -107,6 +108,19 @@ namespace WebApi.Controllers
             string emailParam = HttpContext.Current.Request.Form["UserEmail"];
             var stringContent = base.ControllerContext.Request.Content.ReadAsStringAsync().Result;
             return user;
+        }
+        [HttpPost]
+        public string RegisterObject(JObject jData)
+        {
+            string idParam = HttpContext.Current.Request.Form["UserID"];
+            string nameParam = HttpContext.Current.Request.Form["UserName"];
+            string emailParam = HttpContext.Current.Request.Form["UserEmail"];
+            var stringContent = base.ControllerContext.Request.Content.ReadAsStringAsync().Result;
+            dynamic dn = jData;
+            JObject juser = dn.User;
+            string info = dn.Info;
+            var user = juser.ToObject<Users>();
+            return  string.Format("{0}_{1}_{2}_{3}", user.UserID, user.UserName, user.UserEmail, info); 
         }
         #endregion
     }
