@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -48,9 +49,25 @@ namespace WebApi.Controllers
         }
         public IEnumerable<Users> GetUserByModelFromUri([FromUri]Users user)
         {
-            var idparam = HttpContext.Current.Request.QueryString["id"];
+            var idparam = HttpContext.Current.Request.QueryString["UserID"];
             var nameparam = HttpContext.Current.Request.QueryString["username"];
-            var email = HttpContext.Current.Request.QueryString["email"];
+            var email = HttpContext.Current.Request.QueryString["UserEmail"];
+            return _userList;
+        }
+        public IEnumerable<Users> GetUserByModelSerialize(string userString)
+        {
+            Users users = JsonConvert.DeserializeObject<Users>(userString);
+            return _userList;
+        }
+        public IEnumerable<Users> GetUserByModelSerializeWithoutGet(string userString)
+        {
+            Users users = JsonConvert.DeserializeObject<Users>(userString);
+            return _userList;
+        }
+        [HttpGet]
+        public IEnumerable<Users> NoGetUserByModelSerializeWithoutGet(string userString)
+        {
+            Users users = JsonConvert.DeserializeObject<Users>(userString);
             return _userList;
         }
 

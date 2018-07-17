@@ -143,6 +143,50 @@
                     datatype: "json"
                 });
             });
+            $("#btnGet7").on("click", function () {
+                $.ajax({
+                    url: "api/user/GetUserByModelSerialize",
+                    type: "get",
+                    data: { "userString": JSON.stringify(user) },
+                    success: function (data) {
+                        alert(data);
+                    },
+                    datatype:"json"
+                });
+            });
+            $("#btnGet7").on("click", function () {
+                $.ajax({
+                    url: "api/user/GetUserByModelSerialize",
+                    type: "get",
+                    data: { "userString": JSON.stringify(user) },
+                    success: function (data) {
+                        alert(data);
+                    },
+                    datatype: "json"
+                });
+            });
+            $("#btnGet8").on("click", function () {
+                $.ajax({
+                    url: "api/user/GetUserByModelSerializeWithoutGet",
+                    type: "get",
+                    data: { "userString": JSON.stringify(user) },
+                    success: function (data) {
+                        alert(data);
+                    },
+                    datatype: "json"
+                });
+            });
+            $("#btnGet9").on("click", function () {
+                $.ajax({
+                    url: "api/user/NoGetUserByModelSerializeWithoutGet",
+                    type: "get",
+                    data: { "userString": JSON.stringify(user) },
+                    success: function (data) {
+                        alert(data);
+                    },
+                    datatype: "json"
+                });
+            });
         });
     </script>
 </form>
