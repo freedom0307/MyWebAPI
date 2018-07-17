@@ -122,6 +122,22 @@ namespace WebApi.Controllers
             var user = juser.ToObject<Users>();
             return  string.Format("{0}_{1}_{2}_{3}", user.UserID, user.UserName, user.UserEmail, info); 
         }
+        public string RegisterObjectDynamic(dynamic dynamicData)//可以来自FromBody   FromUri
+        {
+            string idParam = HttpContext.Current.Request.Form["User[UserID]"];
+            string nameParam = HttpContext.Current.Request.Form["User[UserName]"];
+            string emailParam = HttpContext.Current.Request.Form["User[UserEmail]"];
+            string infoParam = HttpContext.Current.Request.Form["info"];
+            dynamic json = dynamicData;
+            JObject jUser = json.User;
+            string info = json.Info;
+            var user = jUser.ToObject<Users>();
+
+            return string.Format("{0}_{1}_{2}_{3}", user.UserID, user.UserName, user.UserEmail, info);
+        }
+        #endregion
+        #region HttpPut
+
         #endregion
     }
     public class Users

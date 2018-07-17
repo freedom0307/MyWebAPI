@@ -247,6 +247,10 @@
                    
                 });
             });
+            $("#btnPost6").on("click", function () {//Dynamic  失败了
+                $.ajax({ url: "/api/user/RegisterObjectDynamic", type: "post", data: { "User": user, "Info": info }, success: function (data) { alert(data); }, datatype: "json" });
+            });
+
         });
     </script>
 </form>
