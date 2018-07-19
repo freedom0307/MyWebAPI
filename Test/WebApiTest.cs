@@ -51,7 +51,8 @@ namespace Test
             string url8 = "http://localhost:9008/api/user/GetUserByModelSerializeWithoutGet?userString=%7B%22UserID%22%3A%2211%22%2C%22UserName%22%3A%22Eleven%22%2C%22UserEmail%22%3A%2257265177%40qq.com%22%7D";
             string url9 = "http://localhost:9008/api/user/NoGetUserByModelSerializeWithoutGet?userString=%7B%22UserID%22%3A%2211%22%2C%22UserName%22%3A%22Eleven%22%2C%22UserEmail%22%3A%2257265177%40qq.com%22%7D";
 
-            var httpRequest=(HttpWebRequest)WebRequest.Create(url1);
+            var httpRequest=(HttpWebRequest)WebRequest.Create(url9);
+            httpRequest.Timeout = 30*1000;
             string res= "";
             var result1 = httpRequest.GetResponseAsync().Result;
             var result = httpRequest.GetResponseAsync().Result as HttpWebResponse;
@@ -68,7 +69,17 @@ namespace Test
 
         }
         #region Get-Request
+        #region Post-Client
+        //public static string GetClient()
+        //{
+        //    HttpClient httpClient = new HttpClient();
+        //    var response = httpClient.PostAsync();
+        //}
 
+        #endregion
+        #region Post-Requst
+
+        #endregion
         #endregion
         public class Users
         {

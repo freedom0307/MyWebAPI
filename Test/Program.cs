@@ -11,7 +11,7 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            var res =WebApiTest.GetClient();
+            //var res =WebApiTest.GetClient();
             var res1 = WebApiTest.GetRequest();
             //var entity = JsonHelper.StringToObject<Users>(res);
         }
