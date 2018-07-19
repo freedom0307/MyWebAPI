@@ -251,6 +251,53 @@
                 $.ajax({ url: "/api/user/RegisterObjectDynamic", type: "post", data: { "User": user, "Info": info }, success: function (data) { alert(data); }, datatype: "json" });
             });
 
+
+            $("#btnPut1").on("click", function () {
+                $.ajax({
+                    url: "/api/user/RegisterPut",
+                    type: "Put",
+                    data: { "id": $("#txtid").val() },
+                    success: function (data) { alert(data) },
+                    datatype:"json"
+                });
+            });
+            $("#btnPut2").on("click", function () {
+                $.ajax({
+                    url: "/api/user/RegisterNoKeyPut",
+                    type: "Put",
+                    data: { "": $("#txtid").val() },
+                    success: function (data) { alert(data) },
+                    datatype: "json"
+                });
+            });
+            $("#btnPut3").on("click", function () {
+                $.ajax({
+                    url: "/api/user/RegisterUserPut",
+                    type: "Put",
+                    data: user,
+                    success: function (data) { alert(data) },
+                    datatype: "json"
+                });
+            });
+            $("#btnPut4").on("click", function () {
+                $.ajax({
+                    url: "/api/user/RegisterUserPut",
+                    type: "Put",
+                    data: JSON.stringify(user),
+                    success: function (data) { alert(data) },
+                    datatype: "json"
+                });
+            });
+            $("#btnPut5").on("click", function () {
+                $.ajax({
+                    url: "/api/user/RegisterObjectPut",
+                    type: "Put",
+                    data: {"User":user,"Info":info},
+                    success: function (data) { alert(data) },
+                    datatype: "json"
+                });
+            });
+
         });
     </script>
 </form>

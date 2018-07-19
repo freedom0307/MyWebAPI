@@ -137,7 +137,79 @@ namespace WebApi.Controllers
         }
         #endregion
         #region HttpPut
+        [HttpPut]
+        public Users RegisterNoKeyPut([FromBody]int id)
+        {
+            string idParam = HttpContext.Current.Request.Form["id"];
 
+            var user = _userList.FirstOrDefault(users => users.UserID == id);
+            if (user == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return user;
+        }
+
+        //POST api/Users/registerPut
+        //只接受一个参数的需要不给key才能拿到
+        [HttpPut]
+        public Users RegisterPut([FromBody]int id)//可以来自FromBody   FromUri
+                                                  //public Users Register(int id)//可以来自url
+        {
+            string idParam = HttpContext.Current.Request.Form["id"];
+
+            var user = _userList.FirstOrDefault(users => users.UserID == id);
+            if (user == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return user;
+        }
+
+        //POST api/Users/RegisterUserPut
+        [HttpPut]
+        public Users RegisterUserPut(Users user)//可以来自FromBody   FromUri
+        {
+            string idParam = HttpContext.Current.Request.Form["UserID"];
+            string nameParam = HttpContext.Current.Request.Form["UserName"];
+            string emailParam = HttpContext.Current.Request.Form["UserEmail"];
+
+            //var userContent = base.ControllerContext.Request.Content.ReadAsFormDataAsync().Result;
+            var stringContent = base.ControllerContext.Request.Content.ReadAsStringAsync().Result;
+            return user;
+        }
+
+
+        //POST api/Users/registerPut
+        [HttpPut]
+        public string RegisterObjectPut(JObject jData)//可以来自FromBody   FromUri
+        {
+            string idParam = HttpContext.Current.Request.Form["User[UserID]"];
+            string nameParam = HttpContext.Current.Request.Form["User[UserName]"];
+            string emailParam = HttpContext.Current.Request.Form["User[UserEmail]"];
+            string infoParam = HttpContext.Current.Request.Form["info"];
+            dynamic json = jData;
+            JObject jUser = json.User;
+            string info = json.Info;
+            var user = jUser.ToObject<Users>();
+
+            return string.Format("{0}_{1}_{2}_{3}", user.UserID, user.UserName, user.UserEmail, info);
+        }
+
+        [HttpPut]
+        public string RegisterObjectDynamicPut(dynamic dynamicData)//可以来自FromBody   FromUri
+        {
+            string idParam = HttpContext.Current.Request.Form["User[UserID]"];
+            string nameParam = HttpContext.Current.Request.Form["User[UserName]"];
+            string emailParam = HttpContext.Current.Request.Form["User[UserEmail]"];
+            string infoParam = HttpContext.Current.Request.Form["info"];
+            dynamic json = dynamicData;
+            JObject jUser = json.User;
+            string info = json.Info;
+            var user = jUser.ToObject<Users>();
+
+            return string.Format("{0}_{1}_{2}_{3}", user.UserID, user.UserName, user.UserEmail, info);
+        }
         #endregion
     }
     public class Users

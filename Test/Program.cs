@@ -12,8 +12,11 @@ namespace Test
         static void Main(string[] args)
         {
             //var res =WebApiTest.GetClient();
-            var res1 = WebApiTest.GetRequest();
+            //var res1 = WebApiTest.GetRequest();
+            //var res2 = WebApiTest.PostClient();
             //var entity = JsonHelper.StringToObject<Users>(res);
+            //var res3 = WebApiTest.PostRequest();
+            var res4 = WebApiTest.PutRequest();
         }
     }
 }
