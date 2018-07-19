@@ -217,7 +217,7 @@ namespace Test
             var request = WebRequest.Create(url4) as HttpWebRequest;
             request.Timeout = 30 * 1000;
             request.Method = "Put";
-            request.ContentType = "application/json";
+            request.ContentType = "application/json";//不加这个会报错
             request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36";
             var postData = JsonHelper.ObjectToString(other);
             //postData = "1";
